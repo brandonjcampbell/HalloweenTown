@@ -4,7 +4,7 @@
   "engines": {
   },
   "description": "Trick or Treat App",
-  "main": "src/index.js",
+  "main": "src/index.html",
   "scripts": {
     "build": "",
     "dev": "",
