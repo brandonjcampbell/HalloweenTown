@@ -56,10 +56,14 @@ function showPosition(position) {
 
   currentX = calibrateLat(position.coords.latitude);
   currentY = calibrateLon(position.coords.longitude);
+  
+  console.log(currentX,currentY)
 
   
   x.innerHTML = `<div style="position:absolute; background:green; top:${currentX}px; left:${currentY}px;">HERE!</div>`
   plotLandmarks()
+
+  setTimeout(recheck, 1000)
 
 }
 
@@ -72,6 +76,10 @@ function plotLandmarks(){
    landmarks.innerHTML += `<div style="position:absolute; background:red; top:${calibrateLat(mark.lat)}px; left:${calibrateLon(mark.lon)}px;">${mark.name}</div>`
   })
 
+}
+
+function recheck(){
+  getLocation()
 }
 
 getLocation()
