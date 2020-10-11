@@ -1,11 +1,20 @@
 {
   "name": "halloweentown",
   "version": "1.1.0",
+  "engines": {
+    "node": "8.11.3"
+  },
   "description": "Trick or Treat App",
   "main": "src/index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brandonjcampbell/halloweentown.git"
   },
-  "author": "Brandon Campbell <brandon.j.campbell.bb@gmail.com>"
+  "author": "Brandon Campbell <brandon.j.campbell.bb@gmail.com>",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
