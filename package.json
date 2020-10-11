@@ -1,22 +1,11 @@
 {
   "name": "halloweentown",
   "version": "1.1.0",
-  "engines": {
-  },
   "description": "Trick or Treat App",
   "main": "src/index.html",
-  "scripts": {
-    "build": "",
-    "dev": "",
-    "start": ""
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brandonjcampbell/halloweentown.git"
   },
-  "author": "Brandon Campbell <brandon.j.campbell.bb@gmail.com>",
-  "devDependencies": {
-  },
-  "dependencies": {
-  }
+  "author": "Brandon Campbell <brandon.j.campbell.bb@gmail.com>"
 }
