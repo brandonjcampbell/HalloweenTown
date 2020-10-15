@@ -22,8 +22,10 @@ app.get("/geolocation.js", function (req, res) {
 });
 
 app.get("/wardMap.png", function (req, res) {
-  res.sendFile(path.join(__dirname + "/wardMap.png"));
+  res.sendFile(path.join(__dirname + "/carolannesWardMap.png"));
 });
+
+
 
 app.listen(port, () =>
   console.log(
