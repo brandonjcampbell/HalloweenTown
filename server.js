@@ -26,6 +26,18 @@ app.get("/wardMap.png", function (req, res) {
   res.sendFile(path.join(__dirname + "/carolannesWardMap.png"));
 });
 
+app.get("/fancyMap.png", function (req, res) {
+  res.sendFile(path.join(__dirname + "/fancyMap.png"));
+});
+
+app.get("/cache.png", function (req, res) {
+  res.sendFile(path.join(__dirname + "/cache.png"));
+});
+
+app.get("/geotag.png", function (req, res) {
+  res.sendFile(path.join(__dirname + "/geotag.png"));
+});
+
 app.get("/dynamic", function (req, res) {
   res.sendFile(path.join(__dirname + "/dynamic.html"));
 });

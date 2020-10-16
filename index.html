@@ -1,10 +1,24 @@
 <head>
     <script  type="module" src="./list.json"></script>
     <script  type="module" src="./dynamicGeo.js"></script>
+    <style>
+      body{
+        background: #222222;
+        font-family:arial;
+       
+      }
+      .card{
+        background:black;border-radius: 10px;color:white; padding:20px;
+      }
+    .info{width:400px; height:200px;display:none;background:black;border-radius: 10px;color:white; padding:20px;position:relative;top:-120px;left:-70px}
+    .cache:hover .info{
+      display:block;
+    }
+    </style>
   </head>
   <body>
   <div id="demo"></div>
-  <div id="landmarks">test</div>
-   <img src="./wardMap.png">
+  <div id="landmarks"></div>
+   <img src="./fancyMap.png">
   
   </body>

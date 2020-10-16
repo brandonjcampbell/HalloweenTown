@@ -52,8 +52,8 @@ const topLeftLon =-116.612855
 const bottomRightLat = 43.552780
 const bottomRightLon =-116.562993
 
-const height= 332
-const width=1381
+const height= 1260
+const width=4840
 
 let currentLat =0;
 let currentLon =0;
@@ -101,14 +101,25 @@ function showPosition(position) {
   currentLat=position.coords.latitude;
   currentLon = position.coords.longitude;
 
-  currentX = calibrateLat(position.coords.latitude);
-  currentY = calibrateLon(position.coords.longitude);
+  currentX = calibrateLat(position.coords.latitude)-200;
+  currentY = calibrateLon(position.coords.longitude)-5000;
+
+if (currentLat> bottomRightLat && currentLat < topLeftLat
+  && currentLon> bottomRightLon && currentLon < topLeftLon) {
+
+    
+    x.innerHTML = `< img style="position:absolute; top:${currentX-100}px; left:${currentY-20}px; height:100px;width:100px" src="geotag.png"/>`
+    plotLandmarks()
+  }else{
+    x.innerHTML = `<div class="card" style="position:absolute; top:100px; left:100px;">You are outside map boundaries</div>`
+    plotLandmarks()
+  }
+
   
   console.log(currentX,currentY)
 
   
-  x.innerHTML = `<div style="position:absolute; background:green; top:${currentX}px; left:${currentY}px;">HERE!</div>`
-  plotLandmarks()
+
 
   setTimeout(recheck, 1000)
 
@@ -120,7 +131,10 @@ function plotLandmarks(){
 
   list.forEach(mark =>{
     console.log(mark, landmarks)
-   landmarks.innerHTML += `<div style="position:absolute; background:red; top:${calibrateLat(mark.lat)}px; left:${calibrateLon(mark.lon)}px;">${mark.name}</div>`
+   landmarks.innerHTML += `<div class="cache" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)-20}px;"><img style="height:100px;width:100px" src="cache.png"/>
+   <div class="info"> <h1>${mark.name}</h1> ${mark.desc} </div>
+   
+   </div>`
   })
 
 }

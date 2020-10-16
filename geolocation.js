@@ -72,8 +72,8 @@ function showPosition(position) {
   currentLat=position.coords.latitude;
   currentLon = position.coords.longitude;
 
-  currentX = calibrateLat(position.coords.latitude);
-  currentY = calibrateLon(position.coords.longitude);
+  currentX = calibrateLat(position.coords.latitude)-200;
+  currentY = calibrateLon(position.coords.longitude)+450;
   
   console.log(currentX,currentY)
 
