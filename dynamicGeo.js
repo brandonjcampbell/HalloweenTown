@@ -101,14 +101,22 @@ function showPosition(position) {
   currentLat=position.coords.latitude;
   currentLon = position.coords.longitude;
 
-  currentX = calibrateLat(position.coords.latitude)-200;
-  currentY = calibrateLon(position.coords.longitude)-5000;
+  // currentLat = 43.531045
+  // currentLon = -116.577733
 
-if (currentLat> bottomRightLat && currentLat < topLeftLat
-  && currentLon> bottomRightLon && currentLon < topLeftLon) {
+  currentX = calibrateLat(currentLat);
+  currentY = calibrateLon(currentLon);
 
+if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLeftLon && currentLon < bottomRightLon) {
+
+  console.log(currentLat < topLeftLat)
+  console.log(currentLat > bottomRightLat)
+  console.log(currentLon > topLeftLon)
+  console.log(currentLon < bottomRightLon)
     
-    x.innerHTML = `< img style="position:absolute; top:${currentX-100}px; left:${currentY-20}px; height:100px;width:100px" src="geotag.png"/>`
+    x.innerHTML = `<img
+     style="z-index:5;position:absolute; top:${currentX-100}px; left:${currentY-20}px; height:100px;width:100px;" 
+     src="./geotag.png"/>`
     plotLandmarks()
   }else{
     x.innerHTML = `<div class="card" style="position:absolute; top:100px; left:100px;">You are outside map boundaries</div>`
@@ -116,7 +124,7 @@ if (currentLat> bottomRightLat && currentLat < topLeftLat
   }
 
   
-  console.log(currentX,currentY)
+  //console.log(currentX,currentY)
 
   
 
