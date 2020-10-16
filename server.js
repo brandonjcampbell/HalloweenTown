@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const {getList} = require("./getGoog.js")
 
 var bodyParser = require("body-parser");
 
@@ -25,6 +26,38 @@ app.get("/wardMap.png", function (req, res) {
   res.sendFile(path.join(__dirname + "/carolannesWardMap.png"));
 });
 
+app.get("/dynamic", function (req, res) {
+  res.sendFile(path.join(__dirname + "/dynamic.html"));
+});
+
+app.get("/dynamicGeo.js", function (req, res) {
+  res.sendFile(path.join(__dirname + "/dynamicGeo.js"));
+});
+
+app.get("/credentials.json", function (req, res) {
+  res.sendFile(path.join(__dirname + "/credentials.json"));
+});
+
+
+app.get("/list.js", async function (req, res) {
+  console.log("here")
+  let list = await getList();
+  console.log("did i get the list?"  + list)
+
+
+  var out = `const list = ${JSON.stringify(list)}
+   export default list
+  `;
+
+  res.setHeader('content-type', 'text/javascript');
+  res.write(out);
+  res.end();
+
+
+  //res.sendFile(path.join(__dirname + "/credentials.json"));
+});
+
+app.use(express.static(__dirname +'/node_modules'));
 
 
 app.listen(port, () =>
