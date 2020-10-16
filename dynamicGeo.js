@@ -1,51 +1,6 @@
-// const topLeftLat = 41.132586
-// const topLeftLon =-112.054798
-
-// const bottomRightLat = 41.125439
-// const bottomRightLon =-112.040559
-
-// import { google } from './node_modules/googleapis'
-// import keys  from './credentials.json'
-
-// const client = new google.auth.JWT(
-//     keys.client_email,
-//     null, 
-//     keys.private_key,
-//     ["https://www.googleapis.com/auth/spreadsheets.readonly"]
-// )
-
-// client.authorize(function(err,tokens){
-//     if(err){
-//         console.log(err);
-//         return;
-//     }else{
-//         console.log("Connected")
-//         gsrun(client)
-//     }
-// })
-
-// async function gsrun(cl){
-//     const gsapi = google.sheets({version:'v4', auth:cl})
-//     const opt = {
-//         spreadsheetId:'1X5ol6f9HtzjXFEMh7w4gWAw9sbn6BSeuPIlgEWQtk9Y',
-//         range:'A2:D'
-//     }
-
-//     let data = await gsapi.spreadsheets.values.get(opt)
-//     list = data.data.values.map(row=>{
-//         return {
-//           name:row[0],
-//           desc:row[1],
-//           lat:row[2],
-//           lon:row[3]
-//         }
-//       }
-//     );
-//     console.log(dataArray)
-// }
 
 import list from './list.js'
-console.log(list,"liiiiiiiiiiiist")
+
 const topLeftLat = 43.561458
 const topLeftLon =-116.612855
 
@@ -65,13 +20,6 @@ const lonDelta = topLeftLon - bottomRightLon
 
 const latUnit = latDelta/height
 const lonUnit = lonDelta/width
-
-
-// let list = [
-//   // {name:"Certain Doom", lat:43.560945, lon:-116.577733},
-//   // {name:"Get some cocoa", lat:43.555014, lon:-116.572660},
-//   // {name:"Spy on the Elderly", lat:43.555558, lon:-116.580356}
-//   ]
 
 var x = document.getElementById("demo");
 var landmarks = document.getElementById("landmarks");
@@ -95,7 +43,7 @@ function calibrateLon(lon){
 
 function showPosition(position) {
     var x = document.getElementById("demo");
-    console.log(x)
+   // console.log(x)
 
 
   currentLat=position.coords.latitude;
@@ -109,10 +57,10 @@ function showPosition(position) {
 
 if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLeftLon && currentLon < bottomRightLon) {
 
-  console.log(currentLat < topLeftLat)
-  console.log(currentLat > bottomRightLat)
-  console.log(currentLon > topLeftLon)
-  console.log(currentLon < bottomRightLon)
+  //console.log(currentLat < topLeftLat)
+ // console.log(currentLat > bottomRightLat)
+ // console.log(currentLon > topLeftLon)
+ // console.log(currentLon < bottomRightLon)
     
     x.innerHTML = `<img
      style="z-index:5;position:absolute; top:${currentX-100}px; left:${currentY-20}px; height:100px;width:100px;" 
@@ -123,27 +71,26 @@ if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLe
     plotLandmarks()
   }
 
-  
-  //console.log(currentX,currentY)
-
-  
-
-
   setTimeout(recheck, 1000)
 
 }
 
 function plotLandmarks(){
-
   var landmarks = document.getElementById("demo");
 
+  landmarks.innerHTML = "";
   list.forEach(mark =>{
-    console.log(mark, landmarks)
-   landmarks.innerHTML += `<div class="cache" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)-20}px;"><img style="height:100px;width:100px" src="cache.png"/>
-   <div class="info"> <h1>${mark.name}</h1> ${mark.desc} </div>
-   
-   </div>`
+   // console.log(mark, landmarks)
+   landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)-100}, ${calibrateLon(mark.lon)-20})" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)-20}px;"><img style="height:100px;width:100px" src="cache.png"/></div>`
+  
   })
+}
+
+
+window.handleMessage = function (name,text,x,y){
+  //var message = document.getElementById("message");
+  //message.innerHTML = `<div style="display:block;position:absolute;top:${x}px;left:${y}px> <h1>${name} </h1>  ${text} </div>`
+  alert(name+ " - " +text)
 
 }
 
@@ -152,4 +99,3 @@ function recheck(){
 }
 
 getLocation()
-
