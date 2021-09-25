@@ -27,7 +27,7 @@ var landmarks = document.getElementById("landmarks");
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
-    console.log("getLocation")
+ 
   } else {
     x.innerHTML = "Geolocation is not supported by this browser.";
     console.log("notSupported")
@@ -51,16 +51,16 @@ function showPosition(position) {
   currentX = calibrateLat(currentLat);
   currentY = calibrateLon(currentLon);
 
-  console.log(currentLat < topLeftLat)
-  console.log(currentLat > bottomRightLat)
-  console.log(currentLon > topLeftLon)
-  console.log(currentLon < bottomRightLon)
+  // console.log(currentLat < topLeftLat)
+  // console.log(currentLat > bottomRightLat)
+  // console.log(currentLon > topLeftLon)
+  // console.log(currentLon < bottomRightLon)
 
 if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLeftLon && currentLon < bottomRightLon) {
     x.innerHTML = `<img
      style="z-index:5;position:absolute; top:${currentX-50}px; left:${currentY}px; height:50px;width:50px;" 
      src="./geotag.png"/>`
-     console.log(currentX,currentY)
+
     plotLandmarks()
   }else{
     x.innerHTML = `<div class="card" style="position:absolute; top:100px; left:100px;">You are outside map boundaries</div>`

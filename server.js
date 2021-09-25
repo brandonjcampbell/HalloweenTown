@@ -46,6 +46,11 @@ app.get("/dynamicGeo.js", function (req, res) {
   res.sendFile(path.join(__dirname + "/dynamicGeo.js"));
 });
 
+
+app.get("/resize.js", function (req, res) {
+  res.sendFile(path.join(__dirname + "/resize.js"));
+});
+
 app.get("/credentials.json", function (req, res) {
   res.sendFile(path.join(__dirname + "/credentials.json"));
 });

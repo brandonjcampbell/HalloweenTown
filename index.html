@@ -1,29 +1,33 @@
 <head>
     <script  type="module" src="./list.json"></script>
     <script  type="module" src="./dynamicGeo.js"></script>
+    <script  type="module" src="./resize.js"></script>
+    
+
+
     <style>
       body{
         background: #222222;
         font-family:arial;
        
       }
-      .card{
+      /* .card{
         background:black;border-radius: 10px;color:white; padding:20px;
       }
     .info{width:400px; height:200px;display:none;background:black;border-radius: 10px;color:white; padding:20px;position:relative;top:-340px;left:-150px}
+     */
     
-    
-    @media(hover: hover) and (pointer: fine) {
+    /* @media(hover: hover) and (pointer: fine) {
       .cache:hover .info{
       display:block;
-    }
+    } */
 }
 
 
     </style>
   </head>
-  <body>
-    <div>
+  <body id="app" style="text-align:left;">
+    <div id="map" style=" display: inline-block; transform-origin: top left; ">
 
    
   <div id="demo"></div>
