@@ -1,14 +1,14 @@
 
 import list from './list.js'
 
-const topLeftLat = 41.132660 
-const topLeftLon =-112.054796
+const topLeftLat = 41.132575
+const topLeftLon =-112.054722
 
 const bottomRightLat = 41.125411
 const bottomRightLon =-112.035564
 
-const height= 1080
-const width=540
+const height=540 
+const width=1060
 
 let currentLat =0;
 let currentLon =0;
@@ -27,9 +27,10 @@ var landmarks = document.getElementById("landmarks");
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
-
+    console.log("getLocation")
   } else {
     x.innerHTML = "Geolocation is not supported by this browser.";
+    console.log("notSupported")
   }
 }
 
@@ -43,28 +44,23 @@ function calibrateLon(lon){
 
 function showPosition(position) {
     var x = document.getElementById("demo");
-   // console.log(x)
-
 
   currentLat=position.coords.latitude;
   currentLon = position.coords.longitude;
 
-  // currentLat = 43.531045
-  // currentLon = -116.577733
-
   currentX = calibrateLat(currentLat);
   currentY = calibrateLon(currentLon);
 
-if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLeftLon && currentLon < bottomRightLon) {
+  console.log(currentLat < topLeftLat)
+  console.log(currentLat > bottomRightLat)
+  console.log(currentLon > topLeftLon)
+  console.log(currentLon < bottomRightLon)
 
-  //console.log(currentLat < topLeftLat)
- // console.log(currentLat > bottomRightLat)
- // console.log(currentLon > topLeftLon)
- // console.log(currentLon < bottomRightLon)
-    
+if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLeftLon && currentLon < bottomRightLon) {
     x.innerHTML = `<img
-     style="z-index:5;position:absolute; top:${currentX-100}px; left:${currentY-20}px; height:100px;width:100px;" 
+     style="z-index:5;position:absolute; top:${currentX-50}px; left:${currentY}px; height:50px;width:50px;" 
      src="./geotag.png"/>`
+     console.log(currentX,currentY)
     plotLandmarks()
   }else{
     x.innerHTML = `<div class="card" style="position:absolute; top:100px; left:100px;">You are outside map boundaries</div>`
@@ -76,12 +72,20 @@ if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLe
 }
 
 function plotLandmarks(){
-  var landmarks = document.getElementById("demo");
+  var landmarks = document.getElementById("landmarks");
 
   landmarks.innerHTML = "";
   list.forEach(mark =>{
-   // console.log(mark, landmarks)
-   landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)-100}, ${calibrateLon(mark.lon)-20})" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)-20}px;"><img style="height:100px;width:100px" src="cache.png"/></div>`
+
+    if(Math.abs(currentLat - mark.lat)<0.001 && Math.abs(currentLon - mark.lon)<0.001 ){
+      landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)-50}, ${calibrateLon(mark.lon)})" style="position:absolute; top:${calibrateLat(mark.lat)-50}px; left:${calibrateLon(mark.lon)}px; z-index:20"><img style="height:50px;width:50px;z-index:10" src="cache.png"/></div>`
+
+    }
+    else{
+      landmarks.innerHTML += `<div class="cache" style="position:absolute; top:${calibrateLat(mark.lat)-30}px; left:${calibrateLon(mark.lon)}px;"><img style="height:30px;width:30px" src="cache.png"/></div>`
+
+    }
+
   
   })
 }
