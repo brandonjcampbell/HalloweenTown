@@ -1,14 +1,14 @@
 
 import list from './list.js'
 
-const topLeftLat = 43.561458
-const topLeftLon =-116.612855
+const topLeftLat = 41.132660 
+const topLeftLon =-112.054796
 
-const bottomRightLat = 43.552780
-const bottomRightLon =-116.562993
+const bottomRightLat = 41.125411
+const bottomRightLon =-112.035564
 
-const height= 1260
-const width=4840
+const height= 1080
+const width=540
 
 let currentLat =0;
 let currentLon =0;
