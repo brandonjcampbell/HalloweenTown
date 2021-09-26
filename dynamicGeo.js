@@ -58,7 +58,7 @@ function showPosition(position) {
 
 if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLeftLon && currentLon < bottomRightLon) {
     x.innerHTML = `<img
-     style="z-index:5;position:absolute; top:${currentX-150}px; left:${currentY}px; height:150px;width:150px;" 
+     style="z-index:5;position:absolute; top:${currentX-100}px; left:${currentY-50}px; height:150px;width:150px;" 
      src="./geotag.svg"/>`
 
     plotLandmarks()
