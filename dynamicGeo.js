@@ -7,8 +7,8 @@ const topLeftLon =-112.054722
 const bottomRightLat = 41.125411
 const bottomRightLon =-112.035564
 
-const height=540 
-const width=1060
+const height=1824 
+const width=3248
 
 let currentLat =0;
 let currentLon =0;
@@ -58,8 +58,8 @@ function showPosition(position) {
 
 if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLeftLon && currentLon < bottomRightLon) {
     x.innerHTML = `<img
-     style="z-index:5;position:absolute; top:${currentX-50}px; left:${currentY}px; height:50px;width:50px;" 
-     src="./geotag.png"/>`
+     style="z-index:5;position:absolute; top:${currentX-150}px; left:${currentY}px; height:150px;width:150px;" 
+     src="./geotag.svg"/>`
 
     plotLandmarks()
   }else{
@@ -78,11 +78,11 @@ function plotLandmarks(){
   list.forEach(mark =>{
 
     if(Math.abs(currentLat - mark.lat)<0.001 && Math.abs(currentLon - mark.lon)<0.001 ){
-      landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)-50}, ${calibrateLon(mark.lon)})" style="position:absolute; top:${calibrateLat(mark.lat)-50}px; left:${calibrateLon(mark.lon)}px; z-index:20"><img style="height:50px;width:50px;z-index:10" src="cache.png"/></div>`
+      landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)-50}, ${calibrateLon(mark.lon)})" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)}px; z-index:20"><img style="height:100px;width:100px;z-index:10" src="nearCache.svg"/></div>`
 
     }
     else{
-      landmarks.innerHTML += `<div class="cache" style="position:absolute; top:${calibrateLat(mark.lat)-30}px; left:${calibrateLon(mark.lon)}px;"><img style="height:30px;width:30px" src="cache.png"/></div>`
+      landmarks.innerHTML += `<div class="cache" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)}px;"><img style="height:100px;width:100px" src="cache.svg"/></div>`
 
     }
 

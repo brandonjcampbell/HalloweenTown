@@ -34,8 +34,21 @@ app.get("/cache.png", function (req, res) {
   res.sendFile(path.join(__dirname + "/cache.png"));
 });
 
-app.get("/geotag.png", function (req, res) {
-  res.sendFile(path.join(__dirname + "/geotag.png"));
+app.get("/cache.svg", function (req, res) {
+  res.sendFile(path.join(__dirname + "/cache.svg"));
+});
+
+app.get("/nearCache.svg", function (req, res) {
+  res.sendFile(path.join(__dirname + "/nearCache.svg"));
+});
+
+
+app.get("/geotag.svg", function (req, res) {
+  res.sendFile(path.join(__dirname + "/geotag.svg"));
+});
+
+app.get("/logo.png", function (req, res) {
+  res.sendFile(path.join(__dirname + "/logo.png"));
 });
 
 app.get("/dynamic", function (req, res) {
