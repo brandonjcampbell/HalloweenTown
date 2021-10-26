@@ -82,7 +82,7 @@ function plotLandmarks(){
 
     }
     else{
-      landmarks.innerHTML += `<div class="cache" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)}px;"><img style="height:100px;width:100px" src="cache.svg"/></div>`
+      landmarks.innerHTML += `<div class="cache"  onClick="getCloser(\`${mark.name}\`)" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)}px;"><img style="height:100px;width:100px" src="cache.svg"/></div>`
 
     }
 
@@ -90,6 +90,13 @@ function plotLandmarks(){
   })
 }
 
+
+window.getCloser = function (name){
+  //var message = document.getElementById("message");
+  //message.innerHTML = `<div style="display:block;position:absolute;top:${x}px;left:${y}px> <h1>${name} </h1>  ${text} </div>`
+  alert(name+ " - Get a little bit closer to reveal the clue!")
+
+}
 
 window.handleMessage = function (name,text,x,y){
   //var message = document.getElementById("message");
