@@ -1,11 +1,11 @@
 
 import list from './list.js'
 
-const topLeftLat = 41.132575
-const topLeftLon =-112.054722
+const topLeftLat = 41.132655
+const topLeftLon =-112.054885
 
-const bottomRightLat = 41.125411
-const bottomRightLon =-112.035564
+const bottomRightLat = 41.125304
+const bottomRightLon =-112.035795
 
 const height=1824 
 const width=3248
@@ -78,11 +78,11 @@ function plotLandmarks(){
   list.forEach(mark =>{
 
     if(Math.abs(currentLat - mark.lat)<0.001 && Math.abs(currentLon - mark.lon)<0.001 ){
-      landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)-50}, ${calibrateLon(mark.lon)})" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)}px; z-index:20"><img style="height:100px;width:100px;z-index:10" src="nearCache.svg"/></div>`
+      landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)-50}, ${calibrateLon(mark.lon)})" style="position:absolute; top:${calibrateLat(mark.lat)-30}px; left:${calibrateLon(mark.lon)-50}px; z-index:20"><img style="height:75px;width:75px;z-index:10" src="nearCache.svg"/></div>`
 
     }
     else{
-      landmarks.innerHTML += `<div class="cache"  onClick="getCloser(\`${mark.name}\`)" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)}px;"><img style="height:100px;width:100px" src="cache.svg"/></div>`
+      landmarks.innerHTML += `<div class="cache"  onClick="getCloser(\`${mark.name}\`)" style="position:absolute; top:${calibrateLat(mark.lat)-100}px; left:${calibrateLon(mark.lon)}px;"><img style="height:75px;width:75px" src="cache.svg"/></div>`
 
     }
 
