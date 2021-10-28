@@ -26,12 +26,12 @@ var landmarks = document.getElementById("landmarks");
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition,()=>showPosition(null));
+    navigator.geolocation.getCurrentPosition(showPosition);
  
-  }else{
-    showPosition(null)
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+    console.log("notSupported")
   }
-
 }
 
 function calibrateLat(lat){
@@ -43,40 +43,42 @@ function calibrateLon(lon){
 }
 
 function showPosition(position) {
+    var x = document.getElementById("demo");
 
-  let gpsEnabled = position?true:false;
-
-  var x = document.getElementById("demo");
-
-  currentLat=gpsEnabled? position.coords.latitude:0;
-  currentLon = gpsEnabled? position.coords.longitude:0;
+  currentLat=position.coords.latitude;
+  currentLon = position.coords.longitude;
 
   currentX = calibrateLat(currentLat);
   currentY = calibrateLon(currentLon);
+
+  // console.log(currentLat < topLeftLat)
+  // console.log(currentLat > bottomRightLat)
+  // console.log(currentLon > topLeftLon)
+  // console.log(currentLon < bottomRightLon)
 
 if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLeftLon && currentLon < bottomRightLon) {
     x.innerHTML = `<img
      style="z-index:5;position:absolute; top:${currentX-50}px; left:${currentY-50}px; height:50px;width:50px;" 
      src="./geotag.svg"/>`
 
-    plotLandmarks(gpsEnabled)
+    plotLandmarks()
   }else{
     x.innerHTML = `<div class="card" style="position:absolute; top:100px; left:100px;">You are outside map boundaries</div>`
-    plotLandmarks(gpsEnabled)
+    plotLandmarks()
   }
 
   setTimeout(recheck, 1000)
 
 }
 
-function plotLandmarks(gpsEnabled){
+function plotLandmarks(){
   var landmarks = document.getElementById("landmarks");
 
   landmarks.innerHTML = "";
   list.forEach(mark =>{
 
-    if(!gpsEnabled || (Math.abs(currentLat - mark.lat)<0.001 && Math.abs(currentLon - mark.lon)<0.001  )){
-      landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)}, ${calibrateLon(mark.lon)})" style="position:absolute; top:${calibrateLat(mark.lat)}px; left:${calibrateLon(mark.lon)}px; z-index:20"><img style="height:35px;width:35px;z-index:10" src="nearCache.svg"/></div>`
+    if(Math.abs(currentLat - mark.lat)<0.001 && Math.abs(currentLon - mark.lon)<0.001 ){
+      landmarks.innerHTML += `<div class="cache" onClick="handleMessage(\`${mark.name}\`,\`${mark.desc}\`,${calibrateLat(mark.lat)}, ${calibrateLon(mark.lon)})" style="position:absolute; top:${calibrateLat(mark.lat)-30}px; left:${calibrateLon(mark.lon)-50}px; z-index:20"><img style="height:35px;width:35px;z-index:10" src="nearCache.svg"/></div>`
 
     }
     else{

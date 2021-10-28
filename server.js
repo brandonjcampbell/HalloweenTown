@@ -30,6 +30,16 @@ app.get("/fancyMap.png", function (req, res) {
   res.sendFile(path.join(__dirname + "/fancyMap.png"));
 });
 
+
+app.get("/staticMap.png", function (req, res) {
+  res.sendFile(path.join(__dirname + "/staticMap.png"));
+});
+
+
+app.get("/staticMap.html", function (req, res) {
+  res.sendFile(path.join(__dirname + "/staticMap.html"));
+});
+
 app.get("/cache.png", function (req, res) {
   res.sendFile(path.join(__dirname + "/cache.png"));
 });

@@ -4,7 +4,7 @@ function reportWindowSize() {
     let hit = window.innerHeight;
     let wid = window.innerWidth;
     console.log( wid)
-    document.getElementById("map").style.transform = "scale("+(wid/3300)+")";
+    document.getElementById("map").style.transform = "scale("+(wid/1620)+")";
   }
   
   window.onresize = reportWindowSize;
