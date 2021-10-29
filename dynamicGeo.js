@@ -61,7 +61,7 @@ if (currentLat < topLeftLat && currentLat > bottomRightLat && currentLon > topLe
 
     plotLandmarks(gpsEnabled)
   }else{
-    x.innerHTML = `<div class="card" style="position:absolute; top:100px; left:100px;">You are outside map boundaries</div>`
+    x.innerHTML = `<div class="card" style="position:absolute; top:100px; left:100px;"></div>`
     plotLandmarks(gpsEnabled)
   }
 
